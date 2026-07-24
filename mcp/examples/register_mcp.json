@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "sensei": {
+      "command": "sensei-mcp",
+      "args": [],
+      "env": {
+        "OBSIDIAN_VAULT": "/path/to/your/obsidian-vault",
+        "SENSEI_DB_PATH": "/path/to/sensei.db"
+      }
+    }
+  }
+}

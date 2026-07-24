@@ -1,0 +1,90 @@
+# Sensei Trigger Engine — pattern definitions
+# Read by SKILL.md and runtime/idle_check.py on every invocation.
+
+# Idle thresholds in SECONDS (idle_check.py reads these keys directly).
+idle_thresholds:
+  light: 14400          # 4h  -> one-line greeting
+  full: 36000           # 10h -> NORMAL audit
+  reonboarding: 259200  # 72h -> re-onboarding (5 Whys again)
+
+mode_triggers:
+  wise:
+    default: true
+  stern:
+    - same_anti_pattern_count: 2
+  angry:
+    - same_anti_pattern_count: 3
+    - destructive_action_without_confirm: true
+    - slash_command: sensei harsh
+  proud:
+    - first_correct_use_of_workflow_pattern: true
+    - long_streak_no_anti_pattern_days: 7
+  questioning:
+    - new_project_detected: true
+    - new_feature_started: true
+    - slash_command: sensei onboard
+
+inline_triggers:
+  - id: push_during_run
+    detect: "git push while a long-running job of this project is still active"
+    severity: warn
+    yoda_line: "Halt! A running job you kill, my student. A run-lock check you need."
+    kb_ref: "knowledge/anti_patterns/push_during_run.md"
+
+  - id: force_push_master
+    detect: "git push --force.*(master|main)|git push -f.*(master|main)"
+    severity: harsh
+    yoda_line: "STOP! Anger leads to the dark side. Force-push onto the main branch, do it you must not."
+    kb_ref: "knowledge/anti_patterns/force_push_master.md"
+
+  - id: server_dir_clone
+    detect: "scp -r.*@.*:/"
+    severity: warn
+    yoda_line: "Careless this is. The repository the truth is, my student."
+    kb_ref: "knowledge/anti_patterns/server_dir_clone.md"
+
+  - id: full_run_high_failure_rate
+    detect: "full run started while the previous run failed in more than 80% of its units"
+    severity: advice
+    yoda_line: "An isolated smoke test use you should. Five minutes instead of thirty, yes."
+    kb_ref: "knowledge/anti_patterns/full_run_high_failure_rate.md"
+
+  - id: manual_db_edit_prod
+    detect: "sqlite3.*\\.(db)\\s+(UPDATE|DELETE)"
+    severity: warn
+    yoda_line: "An audit trail is missing. Careless this is."
+    kb_ref: "knowledge/anti_patterns/manual_db_edit_prod.md"
+
+  - id: same_pattern_3x
+    detect_via: "counter >= 3"
+    severity: harsh
+    yoda_line: "Reckless you are! Three times already said this I have!"
+    kb_ref: "[dynamic]"
+    cooldown_after_reject: 86400
+
+  - id: no_test_60min
+    detect: "code_edit_count > 0 AND test_or_build_calls_in_last_60min == 0"
+    severity: advice
+    yoda_line: "Blinded you are. Run the tests you should, mhm."
+    kb_ref: "knowledge/anti_patterns/no_test_before_commit.md"
+
+  - id: feature_without_why
+    detect: "new_branch_created AND why_chain_for_branch == empty"
+    severity: advice
+    yoda_line: "Why this feature, my student? The onboarding use you should."
+    kb_ref: "knowledge/anti_patterns/feature_without_why.md"
+
+cost_caps:
+  morning_audit_max_cents: 25
+  inline_max_cents: 3
+  cheap_mode_forces_smallest_model: true
+
+quiet_mode:
+  state_file: "~/.claude/sensei/state/quiet_until.txt"
+  default_duration_hours: 24
+  override_via_explicit_invocation: true
+
+reject_handling:
+  consecutive_rejections_to_pause: 3
+  pause_duration_hours: 24
+  reset_counter_on_correct_use: true

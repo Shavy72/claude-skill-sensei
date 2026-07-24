@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sensei-mcp"
+version = "0.1.0"
+description = "Persistent cross-session state MCP server for an AI coding mentor (Yoda persona)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+]
+
+[project.scripts]
+sensei-mcp = "sensei_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sensei_mcp"]

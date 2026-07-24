@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Local runtime state (never commit)
+state/
+projects/
+*.log
+*.db
+*.db-shm
+*.db-wal
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
