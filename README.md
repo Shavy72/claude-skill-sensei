@@ -1,3 +1,9 @@
+![Sensei banner](assets/banner.png)
+
+[![Install with skills.sh](https://skills.sh/b/Shavy72/claude-skill-sensei)](https://skills.sh/Shavy72/claude-skill-sensei)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Shavy72/claude-skill-sensei?style=flat)](https://github.com/Shavy72/claude-skill-sensei/stargazers)
+
 # Sensei — a Yoda-styled coding mentor for Claude Code
 
 A Claude Code skill that turns Claude into a blunt but constructive mentor: it reviews your
@@ -5,11 +11,18 @@ working habits instead of your syntax, asks *why* you are building something bef
 you build it, and boils every review down to at most three action items with a Pareto
 justification.
 
-It talks like Master Yoda. Verb at the end of the sentence, "hmm" as a breath word, "my
-student" as the address. The persona is a delivery vehicle — every reprimand still has to
-carry a factual reason and a concrete fix.
+## Quickstart
 
-## What it does
+```bash
+npx skills add Shavy72/claude-skill-sensei
+```
+
+That installs the skill itself — markdown and YAML, no dependencies, works immediately.
+The optional Python runtime (idle triggers, ASCII rendering) and the optional MCP server
+(cross-session state in SQLite) are extra steps, see [Installation](#installation) and
+[Optional: the Python runtime](#optional-the-python-runtime) below.
+
+## How it works
 
 - **Anti-pattern detection** — a knowledge base of 10 anti-patterns (force-push onto main,
   mega commits, hand-editing a production database, pushing while a long-running job is
@@ -27,6 +40,33 @@ carry a factual reason and a concrete fix.
 - **Idle triggers** (optional) — a SessionStart hook that greets you after 4h, runs a full
   audit after 10h and a re-onboarding after 72h of inactivity.
 
+## Installation
+
+### A. skills CLI
+
+```bash
+npx skills add Shavy72/claude-skill-sensei
+```
+
+### B. Claude Code Plugin
+
+```
+/plugin marketplace add Shavy72/claude-skill-sensei
+/plugin install sensei@claude-skill-sensei
+```
+
+### C. git clone
+
+```bash
+git clone https://github.com/Shavy72/claude-skill-sensei ~/.claude/skills/sensei
+```
+
+Restart Claude Code. Ask for it by name ("sensei", "run a sensei audit", "review my habits")
+or let it trigger itself from a hook (below).
+
+Everything past this point is optional. The skill degrades gracefully: no runtime, no MCP
+server, no vault — it still works, it just keeps less state between sessions.
+
 ## Repository layout
 
 ```
@@ -38,20 +78,6 @@ knowledge/workflows/*.md      10 counter-workflows to adopt instead
 runtime/                      optional Python helpers (renderer, hooks, 5-Whys engine)
 mcp/                          optional MCP server for persistent cross-session state
 ```
-
-## Install (skill only)
-
-The skill works on its own — markdown and YAML, no dependencies:
-
-```bash
-git clone https://github.com/Shavy72/claude-skill-sensei ~/.claude/skills/sensei
-```
-
-Restart Claude Code. Ask for it by name ("sensei", "run a sensei audit", "review my habits")
-or let it trigger itself from a hook (below).
-
-Everything past this point is optional. The skill degrades gracefully: no runtime, no MCP
-server, no vault — it still works, it just keeps less state between sessions.
 
 ## Optional: the Python runtime
 

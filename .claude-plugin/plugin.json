@@ -1,0 +1,19 @@
+{
+  "name": "sensei",
+  "description": "A blunt but constructive Yoda-styled coding mentor: reviews your working habits, catches anti-patterns, and boils every audit down to three action items with a Pareto justification.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Shavy72"
+  },
+  "homepage": "https://github.com/Shavy72/claude-skill-sensei",
+  "repository": "https://github.com/Shavy72/claude-skill-sensei",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agent-skills",
+    "mentor",
+    "code-quality",
+    "anti-patterns",
+    "coaching"
+  ]
+}

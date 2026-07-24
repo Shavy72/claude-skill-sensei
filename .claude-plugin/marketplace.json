@@ -1,0 +1,18 @@
+{
+  "name": "claude-skill-sensei",
+  "owner": {
+    "name": "Shavy72"
+  },
+  "metadata": {
+    "description": "Yoda-styled coding mentor skill for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "sensei",
+      "source": "./",
+      "description": "A blunt but constructive Yoda-styled coding mentor: reviews your working habits, catches anti-patterns, and boils every audit down to three action items with a Pareto justification.",
+      "version": "1.0.0"
+    }
+  ]
+}
