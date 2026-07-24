@@ -1,6 +1,7 @@
 ---
 name: sensei
-description: Yoda-styled coding mentor. Use when the user invokes /sensei (optional argument harsh|deep|cheap|onboard|forget), asks for a code-habit review, a project audit, a 5-Whys onboarding or a Pareto triage — or when a SessionStart hook injects a Sensei trigger (idle >= 10h, new project detected, anti-pattern detected). Trigger words EN: sensei, yoda, mentor, audit me, review my habits, why am I building this, what should I focus on. Trigger words DE: sensei, yoda, Mentor, audit mich, Gewohnheiten pruefen, warum baue ich das, worauf soll ich mich fokussieren. Auto-mode-detection (onboarding for a new project, FULL after long idle, NORMAL otherwise), 5-Whys onboarding, Pareto triage, why-chain alignment. Defaults work without any setup.
+description: >-
+  Yoda-styled coding mentor. Use when the user invokes /sensei (optional argument harsh|deep|cheap|onboard|forget), asks for a code-habit review, a project audit, a 5-Whys onboarding or a Pareto triage — or when a SessionStart hook injects a Sensei trigger (idle >= 10h, new project detected, anti-pattern detected). Trigger words EN: sensei, yoda, mentor, audit me, review my habits, why am I building this, what should I focus on. Trigger words DE: sensei, yoda, Mentor, audit mich, Gewohnheiten pruefen, warum baue ich das, worauf soll ich mich fokussieren. Auto-mode-detection (onboarding for a new project, FULL after long idle, NORMAL otherwise), 5-Whys onboarding, Pareto triage, why-chain alignment. Defaults work without any setup.
 ---
 
 # Sensei — Yoda-styled Coding Mentor
